@@ -1,20 +1,115 @@
-body {
-    font: normal 14px/100% "Andale Mono", AndaleMono, monospace;
-    color: #fff;
-    padding: 50px;
-    width: 300px;
-    margin: 0 auto;
-    background-color: #374954;
-    text-align: center;
+
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  
-  h1 {
-    font-size: 100px;
+  :root {
+    --white: #fff;
+    --background: #374954;
+    --gray-line: #dcdde0;
+    --text: #666666;
+    --text-highlight: #b3b9ff;
+    --title: #2e384d;
+    --red: #e83f5b;
+    --green: #4cd62b;
+    --blue: #5965e0;
+    --blue-dark: #4953b8;
+    --blue-twitter: #2aa9e0;
+    --workalove: #F97794;
+    --workback: #ee539d;
   }
 
-  .messageContainer{
-      padding: 25px;
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.4;
+  @media(max-width: 1080px) {
+    html {
+      font-size: 93.75%;
+    }
+  }
+  
+  @media(max-width: 720px) {
+    html {
+      font-size: 87.5%;
+    }
+  }
+
+  body {
+    color: #fff;
+    background-color: var(--workalove);
+  }
+
+  body, button {
+    font: 400 16px "Inter", sans-serif;
+  }
+
+  header{
+    background: var(--white);
+    height: 5rem;
+    
+    justify-content: center;
+  }
+
+  header img{
+    width: 15rem;
+    height: 5rem;
+    position: relative;
+    left: 2rem;
+  }
+
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container section {
+    text-align: center;
+    align-content: center;
+    width: 70%;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+  
+
+  .bubble {
+    position: relative;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    width: 300px;
+    background: #fff;
+    border-radius: 40px;
+    padding: 24px;
+    text-align: center;
+    color: #000;
+  }
+  
+  .bubble-bottom-left:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 24px solid #00000000;
+    border-right: 12px solid #fff;
+    border-top: 12px solid #00000000;
+    border-bottom: 20px solid #fff;
+    left: -24px;
+    top: 30px;
+  }
+
+  .error{
+    color: red;
+  }
+
+  .errorField {
+    border: 5px solid red;
+  }
+
+  .star {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .cursor-pointer{
+    display: inline;
   }
