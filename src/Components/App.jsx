@@ -102,6 +102,8 @@ export default function App() {
                     option.textContent = state.sigla;
 
                     selectStates.appendChild(option);
+
+                    return '';
                 })
                 selectStates.addEventListener('change', () => {
 
@@ -128,6 +130,8 @@ export default function App() {
                                     cityOption.textContent = city.nome;
 
                                     selectCities.appendChild(cityOption);
+
+                                    return ''
                                 });
                             })
                     } else {
@@ -295,8 +299,8 @@ export default function App() {
                                     />
 
                                 </div>
+                                {isEmailSubmitted && (<button disabled={isSubmitting} type="submit">Salvar</button>)}
 
-                                <button disabled={isSubmitting} type="submit">Salvar</button>
                             </div>
 
                         </Form>
