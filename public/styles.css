@@ -8,38 +8,19 @@
   :root {
     --white: #fff;
     --background: #374954;
-    --gray-line: #dcdde0;
-    --text: #666666;
-    --text-highlight: #b3b9ff;
-    --title: #2e384d;
     --red: #e83f5b;
     --green: #4cd62b;
-    --blue: #5965e0;
-    --blue-dark: #4953b8;
-    --blue-twitter: #2aa9e0;
     --workalove: #F97794;
-    --workback: #ee539d;
+    --button: #ee539d;
   }
 
-  @media(max-width: 1080px) {
-    html {
-      font-size: 93.75%;
-    }
-  }
   
-  @media(max-width: 720px) {
-    html {
-      font-size: 87.5%;
-    }
-  }
 
   body {
     color: #fff;
     background-color: var(--workalove);
-  }
-
-  body, button {
-    font: 400 16px "Inter", sans-serif;
+    padding-bottom: 100px;
+    font: 400 1rem "Inter", sans-serif;
   }
 
   header{
@@ -65,16 +46,36 @@
   .container section {
     text-align: center;
     align-content: center;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     padding: 2.5rem 2rem;
+    transition: width 1s;
+    
   }
   
+  .stepContainer {
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  /********************** CHAT STYLING **********************/
+
+  .messageContainer{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .messageContainer img{
+    width: 50px;
+    position: absolute;
+    left: -85px;
+    bottom: 25%;
+  }
 
   .bubble {
     position: relative;
-    font-family: sans-serif;
-    font-size: 18px;
+   
     line-height: 24px;
     width: 300px;
     background: #fff;
@@ -82,6 +83,7 @@
     padding: 24px;
     text-align: center;
     color: #000;
+    left: 0;
   }
   
   .bubble-bottom-left:before {
@@ -94,22 +96,124 @@
     border-top: 12px solid #00000000;
     border-bottom: 20px solid #fff;
     left: -24px;
-    top: 30px;
+    top: 20%;
   }
+
+/*************************** INPUT CONTAINER STYLING *********************/
+.inputContainer {
+    position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bubble-bottom-right:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 24px solid #fff;
+  border-right: 12px solid #00000000;
+  border-top: 12px solid #fff;
+  border-bottom: 20px solid #00000000;
+  right: -24px;
+  top: 20%
+}
+
+
+.inputComponent {
+  height: 3rem;
+  width: 12rem;
+  vertical-align: middle;
+  border: none;
+  font-size: 1rem;
+  background-color: var(--white);
+  margin-right: 0.5rem;
+  
+}
+
+.inputContainer button{
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  background-color: var(--white);
+  vertical-align: middle;
+  color: var(--button)
+}
+
+#uf{
+  width: 3rem;
+}
+
+#city{
+  width: 8.5rem;
+  
+}
 
   .error{
     color: red;
+    position: absolute;
+    bottom: 0;
+    font-size: 1rem;
+    left: 15%;
+    
   }
 
   .errorField {
-    border: 5px solid red;
+    border: 1px solid red;
   }
 
   .star {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .rantingIcon {
+    margin: 0 1rem;
   }
 
   .cursor-pointer{
     display: inline;
+    margin: 0 0.5rem;
+  }
+
+  button[type=submit]{
+    background-color: var(--white);
+    margin-top: 3rem;
+    cursor: pointer;
+    height: 3rem;
+    width: 10rem;
+    align-items: center;
+   
+    border: 0;
+    border-radius: 40px;
+    
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  /********************* MEDIA ***********************/
+  
+  @media(max-width: 1080px) {
+    html {
+      font-size: 93.75%;
+    }
+
+    .messageContainer{
+      margin-bottom: 2rem;
+    }
+
+    .inputContainer{
+      margin-bottom: 2rem;
+    }
+
+    .container section {
+      width: 70%;
+    }
+
+  }
+  
+  @media(max-width: 720px) {
+    html {
+      font-size: 87.5%;
+    }
   }

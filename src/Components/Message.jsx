@@ -2,9 +2,12 @@ import React from "react";
 
 export function MessageName() {
     return (
-        <div class="bubble bubble-bottom-left">
+        <div className="messageContainer">
+            <img src="images/smiling.svg" alt="emoji" />
+            <div className="bubble bubble-bottom-left">
 
-            Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome.
+                Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome.
+            </div>
         </div>
     )
 }
@@ -12,7 +15,10 @@ export function MessageName() {
 export function MessageCity(props) {
     return (
         <div className="messageContainer">
-            Que satisfação, {props.personName}. Agora que sei seu nome, qual a cidade e estado que você mora?
+            <img src="images/happy.svg" alt="emoji" />
+            <div className="bubble bubble-bottom-left">
+                Que satisfação, {props.personName}. Agora que sei seu nome, qual a cidade e estado que você mora?
+            </div>
         </div>
     )
 }
@@ -20,7 +26,10 @@ export function MessageCity(props) {
 export function MessageBornDate() {
     return (
         <div className="messageContainer">
-            Legal, agora que sabemos sua cidade e estado. Quando foi que você nasceu?
+            <img src="images/grinning.svg" alt="emoji" />
+            <div className="bubble bubble-bottom-left">
+                Legal, agora que sabemos sua cidade e estado. Quando foi que você nasceu?
+            </div>
         </div>
     )
 }
@@ -28,7 +37,20 @@ export function MessageBornDate() {
 export function MessageEmail() {
     return (
         <div className="messageContainer">
-            Agora me fala teu email, por gentileza.
+            <img src="images/happier.svg" alt="emoji" />
+            <div className="bubble bubble-bottom-left">
+                Agora me fala teu email, por gentileza.
+            </div>
+        </div>
+    )
+}
+export function LastMessage() {
+    return (
+        <div className="messageContainer">
+            <img src="images/party.svg" alt="emoji" />
+            <div className="bubble bubble-bottom-left">
+                Você finalizou. Faça uma valiação:
+            </div>
         </div>
     )
 }
