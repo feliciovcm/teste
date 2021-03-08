@@ -41,9 +41,24 @@ export default function App() {
         setIsEmailSubmitted(true)
     }
 
+    // LÓGICA DA LIMITAÇÃO DA DATA DE NASCIMENTO, SENDO MÁXIMO PARA DIA ATUAL
 
+    useEffect(() => {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
 
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("datefield").setAttribute("max", today);
 
+    })
 
     //ADICIONANDO POSSIBILIDADE DE LIBERAR PRÓXIMO STEP COM "ENTER"
 
@@ -190,7 +205,8 @@ export default function App() {
                                 <div className="inputContainer">
                                     <div className="bubble bubble-bottom-right">
                                         <Field
-
+                                            id="datefield"
+                                            max='2000-13-13'
                                             data-testid="form-fieldDate"
                                             placeholder="00/00/0000"
                                             type="date"
