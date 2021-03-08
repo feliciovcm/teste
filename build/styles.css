@@ -1,0 +1,250 @@
+
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --white: #fff;
+    --background: #374954;
+    --red: #e83f5b;
+    --green: #4cd62b;
+    --workalove: #F97794;
+    --button: #ee539d;
+    --black: #000;
+  }
+
+ 
+
+  body {
+    color: var(--white);
+    background-color: var(--workalove);
+    padding-bottom: 100px;
+    font: 500 1rem "Inter", sans-serif;
+    position: relative;
+  }
+
+  header{
+    background: var(--white);
+    height: 5rem;
+  }
+
+  header img{
+    width: 15rem;
+    height: 5rem;
+    position: relative;
+    left: 2rem;
+  }
+
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .container section {
+    text-align: center;
+    align-content: center;
+    width: 60%;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    transition: width 1s;
+    
+  }
+  
+  .stepContainer {
+    opacity: 0;
+    transition: opacity 0.4s;
+    
+  }
+
+  h1{
+    position: absolute;
+    top: 100%;
+    
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  h1 img {
+    width: 50px;
+    margin-left: 2rem;
+    transform: translateY(35%);
+  }
+
+  /********************** CHAT STYLING **********************/
+
+  .messageContainer{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .messageContainer img{
+    width: 50px;
+    position: absolute;
+    left: -85px;
+    bottom: 25%;
+  }
+
+  .bubble {
+    position: relative;
+   
+    line-height: 24px;
+    width: 300px;
+    background: var(--white);
+    border-radius: 40px;
+    padding: 24px;
+    text-align: center;
+    
+    color: var(--black);
+    left: 0;
+  }
+  
+  .bubble-bottom-left:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 24px solid #00000000;
+    border-right: 12px solid var(--white);
+    border-top: 12px solid #00000000;
+    border-bottom: 20px solid var(--white);
+    left: -24px;
+    top: 20%;
+  }
+
+/*************************** INPUT CONTAINER STYLING *********************/
+.inputContainer {
+    position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bubble-bottom-right:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 24px solid var(--white);
+  border-right: 12px solid #00000000;
+  border-top: 12px solid var(--white);
+  border-bottom: 20px solid #00000000;
+  right: -24px;
+  top: 20%
+}
+
+input {
+  padding-left: 1rem;
+}
+
+option {
+  text-align: center;
+}
+
+.inputComponent {
+  height: 3rem;
+  width: 12rem;
+  vertical-align: middle;
+  border: none;
+  font-size: 1rem;
+  background-color: var(--white);
+  margin-right: 0.5rem;
+  
+  
+}
+
+.inputContainer button{
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  background-color: var(--white);
+  vertical-align: middle;
+  color: var(--button)
+}
+
+#uf{
+  width: 3rem;
+}
+
+#city{
+  width: 8.5rem;
+  
+}
+
+.error{
+    color: var(--red);
+    position: absolute;
+    bottom: 0;
+    font-size: 1rem;
+    left: 15%;
+    
+}
+
+.errorField {
+    border: 1px solid var(--red);
+}
+
+/*************************** RATING INPUT *************************/
+
+  .star {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .rantingIcon {
+    margin: 0 1rem;
+  }
+
+  .cursor-pointer{
+    display: inline;
+    margin: 0 0.5rem;
+    cursor: pointer;
+  }
+
+/************************* SUBMIT BUTTON ******************/
+
+  button[type=submit]{
+    background-color: var(--white);
+    margin-top: 3rem;
+    cursor: pointer;
+    height: 3rem;
+    width: 10rem;
+    align-items: center;
+   
+    border: 0;
+    border-radius: 40px;
+    
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+
+  /********************* MEDIA ***********************/
+  
+  @media(max-width: 1080px) {
+    html {
+      font-size: 93.75%;
+    }
+
+    .messageContainer{
+      margin-bottom: 2rem;
+    }
+
+    .inputContainer{
+      margin-bottom: 2rem;
+    }
+
+    .container section {
+      width: 70%;
+    }
+
+  }
+  
+  @media(max-width: 720px) {
+    html {
+      font-size: 87.5%;
+    }
+  }
