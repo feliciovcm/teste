@@ -249,23 +249,40 @@ option {
       font-size: 87.5%;
     }
   }
+  @media(max-width: 620px) {
+    h1 img {
+        margin: 0;
+        }
+     }
 
   @media(max-width: 460px) {
     .container section {
       width: 90%;
+      padding: 2.5rem 0;
     }
+    .messageContainer {
+      justify-content: center;
+    }
+    .messageContainer img{
+      left: -1rem;
+
+    }
+    .inputContainer {
+      
+    justify-content: center;
+  }
+  }
+  
+     @media(max-width: 410px) {
+    
     .messageContainer {
       justify-content: flex-end;
     }
     .messageContainer img{
-      left: -42px;
+      left: -1rem;
+
     }
   }
-    
-@media(max-width: 620px) {
-h1 img {
-    margin: 0;
-    }
- }
+
 
   
