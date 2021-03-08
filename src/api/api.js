@@ -1,14 +1,14 @@
 import axios from 'axios'
-
+const { REACT_APP_MY_ENV } = process.env;
 
 
 //API DO POST REQUEST DO FORMULÁRIO
 
 export default function postUser(data) {
-    axios.post('https://60415a34f34cf600173c9cf5.mockapi.io/api/vitorfelicio/users', data)
+    axios.post(REACT_APP_MY_ENV, data)
         .then((response) => {
-            console.log(data);
 
+            console.log(response.data);
         })
         .catch((error) => {
             console.log(error);
@@ -17,7 +17,7 @@ export default function postUser(data) {
         .then(() => {
 
             const changePage = document.getElementById('root');
-            changePage.innerHTML = "<h1> Muito obrigado pela sua participação <img src='images/smiling.svg' alt='emoji' /></h1>";
+            changePage.innerHTML = "<header><img src='https://workalove.com/wp-content/uploads/2021/02/capa-workalove-ok.webp' alt='workalove' /></header><h1> Muito obrigado pela sua participação <img src='images/smiling.svg' alt='emoji' /></h1>";
         })
 }
 
