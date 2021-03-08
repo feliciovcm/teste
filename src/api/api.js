@@ -1,11 +1,11 @@
 import axios from 'axios'
-const { REACT_APP_MY_ENV } = process.env;
+
 
 
 //API DO POST REQUEST DO FORMULÁRIO
 
 export default function postUser(data) {
-    axios.post(REACT_APP_MY_ENV, data)
+    axios.post("https://60415a34f34cf600173c9cf5.mockapi.io/api/vitorfelicio/users", data)
         .then((response) => {
 
             console.log(response.data);
