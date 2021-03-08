@@ -12,15 +12,17 @@
     --green: #4cd62b;
     --workalove: #F97794;
     --button: #ee539d;
+    --black: #000;
   }
 
-  
+ 
 
   body {
-    color: #fff;
+    color: var(--white);
     background-color: var(--workalove);
     padding-bottom: 100px;
     font: 400 1rem "Inter", sans-serif;
+    text-align: center;
   }
 
   header{
@@ -41,6 +43,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 
   .container section {
@@ -56,6 +59,16 @@
   .stepContainer {
     opacity: 0;
     transition: opacity 0.4s;
+    
+  }
+
+  h1{
+    margin-top: 25%;
+  }
+
+  h1 img {
+    width: 50px;
+    margin-left: 2rem;
   }
 
   /********************** CHAT STYLING **********************/
@@ -78,11 +91,12 @@
    
     line-height: 24px;
     width: 300px;
-    background: #fff;
+    background: var(--white);
     border-radius: 40px;
     padding: 24px;
     text-align: center;
-    color: #000;
+    
+    color: var(--black);
     left: 0;
   }
   
@@ -92,9 +106,9 @@
     height: 0px;
     position: absolute;
     border-left: 24px solid #00000000;
-    border-right: 12px solid #fff;
+    border-right: 12px solid var(--white);
     border-top: 12px solid #00000000;
-    border-bottom: 20px solid #fff;
+    border-bottom: 20px solid var(--white);
     left: -24px;
     top: 20%;
   }
@@ -111,14 +125,21 @@
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 24px solid #fff;
+  border-left: 24px solid var(--white);
   border-right: 12px solid #00000000;
-  border-top: 12px solid #fff;
+  border-top: 12px solid var(--white);
   border-bottom: 20px solid #00000000;
   right: -24px;
   top: 20%
 }
 
+input {
+  padding-left: 1rem;
+}
+
+option {
+  text-align: center;
+}
 
 .inputComponent {
   height: 3rem;
@@ -128,6 +149,7 @@
   font-size: 1rem;
   background-color: var(--white);
   margin-right: 0.5rem;
+  
   
 }
 
@@ -149,18 +171,20 @@
   
 }
 
-  .error{
-    color: red;
+.error{
+    color: var(--red);
     position: absolute;
     bottom: 0;
     font-size: 1rem;
     left: 15%;
     
-  }
+}
 
-  .errorField {
-    border: 1px solid red;
-  }
+.errorField {
+    border: 1px solid var(--red);
+}
+
+/*************************** RATING INPUT *************************/
 
   .star {
     width: 2rem;
@@ -174,7 +198,10 @@
   .cursor-pointer{
     display: inline;
     margin: 0 0.5rem;
+    cursor: pointer;
   }
+
+/************************* SUBMIT BUTTON ******************/
 
   button[type=submit]{
     background-color: var(--white);
@@ -190,6 +217,7 @@
     font-size: 1rem;
     font-weight: 600;
   }
+
 
   /********************* MEDIA ***********************/
   

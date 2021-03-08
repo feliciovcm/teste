@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { Formik, Field, Form, ErrorMessage, } from 'formik';
 import { LastMessage, MessageBornDate, MessageCity, MessageEmail, MessageName } from './Message';
-import postUser from "../api/api";
+import postUser, { getStatesAndCIties } from "../api/api";
 import RatingIcon from './Rating';
-import axios from 'axios';
+
+
 
 
 
 
 
 export default function App() {
-
-
 
 
 
@@ -50,7 +49,7 @@ export default function App() {
 
     useEffect(() => {
         document.addEventListener('keydown', (event) => {
-            console.log(event);
+
             if (event.key === "Enter" && event.target.placeholder === "Nome e sobrenome" && event.target.value.length >= 8 && !isNameSubmitted) {
                 nextMessageName();
             } else if (event.key === "Enter" && event.target.name === "city" && event.target.value.length >= 3) {
@@ -68,7 +67,13 @@ export default function App() {
 
     // LÓGICA DO INPUT DE AVALIAÇÃO
 
-
+    const indexList = [
+        { id: 1, },
+        { id: 2, },
+        { id: 3, },
+        { id: 4, },
+        { id: 5, }
+    ]
     const [rating, setRating] = useState(0);
     const [hoverRating, setHoverRating] = useState(0);
     const onMouseEnter = (index) => {
@@ -81,69 +86,9 @@ export default function App() {
         setRating(index);
     };
 
-    //LOGICA DO AUTOCOMPLETE DO INPUT CIDADE E ESTADO
+    //AUTOCOMPLETE DO INPUT CIDADE E ESTADO (LÓGICA NO COMPONENTE API)
 
-    useEffect(() => {
-        const selectStates = document.getElementById('uf');
-        const selectCities = document.getElementById('city');
-
-
-        axios.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
-            .then(res => (res.data))
-            .catch(error => {
-                // handle error
-                console.log(error);
-            })
-            .then(states => {
-                states.map(state => {
-                    const option = document.createElement('option');
-
-                    option.setAttribute('value', state.sigla);
-                    option.textContent = state.sigla;
-
-                    selectStates.appendChild(option);
-
-                    return '';
-                })
-                selectStates.addEventListener('change', () => {
-
-                    let nodesSelectCities = selectCities.childNodes;
-                    [...nodesSelectCities].map(node => node.remove());
-
-                    let state = selectStates.options[selectStates.selectedIndex].value;
-                    if (state) {
-                        let chosenState = states.filter(obj => {
-                            return obj.sigla === state
-                        })
-                        axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${chosenState[0].id}/municipios`)
-                            .then(response => (response.data))
-                            .catch(err => {
-                                // handle error
-                                console.log(err);
-                            })
-                            .then(cities => {
-                                selectCities.removeAttribute('disabled');
-
-                                cities.map(city => {
-                                    const cityOption = document.createElement('option');
-
-                                    cityOption.textContent = city.nome;
-
-                                    selectCities.appendChild(cityOption);
-
-                                    return ''
-                                });
-                            })
-                    } else {
-                        console.log('ops');
-                    }
-
-                });
-            })
-
-    }
-
-    )
+    useEffect(getStatesAndCIties);
 
     //ESQUEMA DE VALIDAÇÃO DOS INPUTS
 
@@ -176,7 +121,7 @@ export default function App() {
             </header>
             <section>
                 <Formik
-                    initialValues={{ name: '', uf: '', city: '', bornDate: '', email: '', rating: '' }}
+                    initialValues={{ name: '', uf: '', city: '', bornDate: '', email: '', rating: 0 }}
                     validationSchema={SignupSchema}
 
                     onSubmit={(data, { setSubmitting }) => {
@@ -195,24 +140,26 @@ export default function App() {
                                 <div className="bubble bubble-bottom-right">
 
                                     <Field
+                                        data-testid="form-fieldName"
                                         placeholder="Nome e sobrenome"
                                         type="input"
                                         name="name"
                                         className={`inputComponent ${errors.name && touched.name && "errorField"}`}
                                     />
-                                    <button type="button" onClick={!errors.name && values.name ? nextMessageName : null}><i className="fas fa-play fa-2x" /></button>
+                                    <button data-testid="form-btnName" type="button" onClick={!errors.name && values.name ? nextMessageName : null}><i className="fas fa-play fa-2x" /></button>
                                     <div className="error"> <ErrorMessage name="name" /></div>
                                 </div>
                             </div>
 
 
-                            <div className="stepContainer" style={isNameSubmitted ? { opacity: 1 } : null}>
+                            <div className="stepContainer" data-testid="form-nextStepCity" style={isNameSubmitted ? { opacity: 1 } : null}>
                                 <MessageCity
                                     personName={values.name}
                                 />
                                 <div className="inputContainer">
                                     <div className="bubble bubble-bottom-right">
                                         <Field
+                                            data-testid="form-fieldUf"
                                             id="uf"
                                             as="select"
                                             name="uf"
@@ -222,6 +169,7 @@ export default function App() {
 
                                         </Field>
                                         <Field
+                                            data-testid="form-fieldCity"
                                             disabled
                                             id="city"
                                             as="select"
@@ -231,55 +179,60 @@ export default function App() {
                                             <option value="">Cidade</option>
                                         </Field>
 
-                                        <button type="button" onClick={!errors.uf && values.uf ? nextMessageCity : null}><i className="fas fa-play fa-2x" /></button>
+                                        <button data-testid="form-btnCity" type="button" onClick={!errors.uf && values.uf ? nextMessageCity : null}><i className="fas fa-play fa-2x" /></button>
                                         <div className="error"> <ErrorMessage name="uf" /></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="stepContainer" style={isCitySubmitted ? { opacity: 1 } : null}>
+                            <div className="stepContainer" data-testid="form-nextStepBorn" style={isCitySubmitted ? { opacity: 1 } : null}>
                                 <MessageBornDate />
                                 <div className="inputContainer">
                                     <div className="bubble bubble-bottom-right">
                                         <Field
+
+                                            data-testid="form-fieldDate"
                                             placeholder="00/00/0000"
                                             type="date"
                                             name="bornDate"
                                             className={`inputComponent ${errors.bornDate && touched.bornDate && "errorField"}`}
                                         />
-                                        <button type="button" onClick={!errors.bornDate ? nextMessageBorndate : null}><i className="fas fa-play fa-2x" /></button>
+                                        <button data-testid="form-btnDate" type="button" onClick={!errors.bornDate && values.bornDate ? nextMessageBorndate : null}><i className="fas fa-play fa-2x" /></button>
                                         <div className="error"> <ErrorMessage name="bornDate" /></div>
                                     </div>
 
                                 </div>
                             </div>
 
-                            <div className="stepContainer" style={isBorndateSubmitted ? { opacity: 1 } : null}>
+                            <div className="stepContainer" data-testid="form-nextStepEmail" style={isBorndateSubmitted ? { opacity: 1 } : null}>
                                 <MessageEmail />
                                 <div className="inputContainer">
                                     <div className="bubble bubble-bottom-right">
                                         <Field
+                                            data-testid="form-fieldEmail"
                                             placeholder="email"
                                             type="email"
                                             name="email"
                                             className={`inputComponent ${errors.email && touched.email && "errorField"}`}
+
                                         />
 
-                                        <button type="button" onClick={!errors.email ? nextMessageEmail : null}><i className="fas fa-play fa-2x" /></button>
+                                        <button data-testid="form-btnEmail" type="button" onClick={!errors.email && values.email ? nextMessageEmail : null}><i className="fas fa-play fa-2x" /></button>
                                         <div className="error"> <ErrorMessage name="email" /></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="stepContainer" style={isEmailSubmitted ? { opacity: 1 } : null}>
+                            <div className="stepContainer" data-testid="form-nextStepRating" style={isEmailSubmitted ? { opacity: 1 } : null}>
                                 <LastMessage />
                                 <div className="inputContainer">
                                     <div className="bubble bubble-bottom-right">
-                                        {[1, 2, 3, 4, 5].map((index) => {
+
+                                        {indexList.map((index) => {
                                             return (
                                                 <RatingIcon
-
-                                                    index={index}
+                                                    key={index.id}
+                                                    index={index.id}
                                                     rating={rating}
                                                     hoverRating={hoverRating}
                                                     onMouseEnter={onMouseEnter}
@@ -288,6 +241,7 @@ export default function App() {
 
                                             )
                                         })}
+
                                         <div className="error"> <ErrorMessage name="rating" /></div>
                                     </div>
                                     <Field
@@ -307,6 +261,8 @@ export default function App() {
                     )}
                 </Formik>
             </section>
+
+
         </div>
     )
 
