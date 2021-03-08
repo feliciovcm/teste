@@ -1,4 +1,5 @@
-<h1>FORMULÁRIO DE CHAT ASSISTENTE VIRTUAL | VIRTUAL ASSISTENT CHAT FORM</h1>
+<h1>VIRTUAL ASSISTENT CHAT FORM</h1>
+
 
 ** To properly run **
 
@@ -25,3 +26,33 @@ yarn start or npm start
 The page will open after this command
 
 Have fun
+
+<h1>FORMULÁRIO DE CHAT ASSISTENTE VIRTUAL</h1>
+
+** Para funcionar corretamente **
+
+npm install
+
+Para instalar todas as dependências
+
+
+<h3> Antes de iniciar o projeto </h3>
+
+
+Abra o projeto em seu IDE de preferência, vá para o componente API.jsx, dentro de /src/api/api.jsx
+
+Dentro do componente api.jsx, altere o URL da postagem para um url de sua preferência
+
+Observe que o url real é denominado "REACT_APP_MY_ENV". Foi utilizada uma variável de ambiente para armazenar a url.
+
+Se você quiser fazer o mesmo, basta criar um arquivo .env, digitando o comando touch .env em seu terminal.
+
+E adicione a ele seu url como REACT_APP_MY_ENV=URL
+
+<h3> Iniciando o aplicativo </h3>
+
+yarn start ou npm start
+
+A página irá abrir após este comando
+
+Divirta-se
