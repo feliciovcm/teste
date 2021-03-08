@@ -84,7 +84,7 @@
   }
 
   .messageContainer img{
-    width: 50px;
+    width: 3rem;
     position: absolute;
     left: -85px;
     bottom: 25%;
@@ -94,7 +94,7 @@
     position: relative;
    
     line-height: 24px;
-    width: 300px;
+    width: 20rem;
     background: var(--white);
     border-radius: 40px;
     padding: 24px;
