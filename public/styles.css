@@ -1,5 +1,4 @@
 
-
   * {
     margin: 0;
     padding: 0;
@@ -63,7 +62,8 @@
   h1{
     position: absolute;
     top: 100%;
-    
+    text-align: center;
+    font-size: 2rem;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -179,7 +179,7 @@ option {
     position: absolute;
     bottom: 0;
     font-size: 1rem;
-    left: 15%;
+    left: 10%;
     
 }
 
@@ -248,3 +248,15 @@ option {
       font-size: 87.5%;
     }
   }
+
+  @media(max-width: 460px) {
+    .container section {
+      width: 90%;
+    }
+  }
+    
+@media(max-width: 620px) {
+h1 img {
+    margin: 0;
+    }
+ }

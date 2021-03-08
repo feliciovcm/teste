@@ -254,11 +254,12 @@ option {
     .container section {
       width: 90%;
     }
+  }
     
-    @media(max-width: 620px) {
-      h1 img {
-        margin: 0;
-      }
+@media(max-width: 620px) {
+h1 img {
+    margin: 0;
     }
+ }
 
   
