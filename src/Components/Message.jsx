@@ -28,7 +28,7 @@ export function MessageBornDate() {
         <div className="messageContainer">
             <img src="images/grinning.svg" alt="emoji" />
             <div className="bubble bubble-bottom-left">
-                Legal, agora que sabemos sua cidade e estado. Quando foi que você nasceu?
+                Legal, agora que sabemos sua cidade e estado, quando foi que você nasceu?
             </div>
         </div>
     )

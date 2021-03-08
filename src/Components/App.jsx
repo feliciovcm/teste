@@ -2,14 +2,9 @@ import React, { useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { Formik, Field, Form, ErrorMessage, } from 'formik';
 import { LastMessage, MessageBornDate, MessageCity, MessageEmail, MessageName } from './Message';
-import postUser, { getStatesAndCIties } from "../api/api";
+import postUser, { getStates } from "../api/api";
 import RatingIcon from './Rating';
-
-
-
-
-
-
+import axios from 'axios';
 
 export default function App() {
 
@@ -103,7 +98,48 @@ export default function App() {
 
     //AUTOCOMPLETE DO INPUT CIDADE E ESTADO (LÓGICA NO COMPONENTE API)
 
-    useEffect(getStatesAndCIties);
+    const [uf, setUf] = useState([]);
+
+    useEffect(() => {
+        getStates
+            .then(res => {
+                setUf(res.data);
+                console.log(res.data[0].sigla);
+
+            })
+    });
+
+    function createUfOption(uf) {
+        return (
+            <option key={uf.id} value={uf.sigla}>{uf.sigla}</option>
+        )
+    }
+
+    const [city, setCity] = useState([]);
+
+    useEffect(() => {
+        const selectStates = document.getElementById('uf');
+        const selectCities = document.getElementById('city');
+
+        if (selectStates.value) {
+            selectStates.addEventListener('change', () => {
+
+                let chosenState = uf.filter(obj => (obj.sigla === selectStates.value))
+
+                axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${chosenState[0].id}/municipios`)
+                    .then(res => {
+                        selectCities.removeAttribute('disabled');
+                        setCity(res.data);
+                    })
+            })
+        }
+    }, [uf])
+
+    function createCitiesOption(city) {
+        return (
+            <option key={city.id} value={city.nome}>{city.nome}</option>
+        )
+    }
 
     //ESQUEMA DE VALIDAÇÃO DOS INPUTS
 
@@ -180,7 +216,7 @@ export default function App() {
                                             name="uf"
                                             className={`inputComponent ${errors.uf && touched.uf && "errorField"}`}
                                         >
-                                            <option value="">UF</option>
+                                            {uf.map(createUfOption)}
 
                                         </Field>
                                         <Field
@@ -191,7 +227,7 @@ export default function App() {
                                             name="city"
                                             className={`inputComponent ${errors.city && touched.city && "errorField"}`}
                                         >
-                                            <option value="">Cidade</option>
+                                            {city.map(createCitiesOption)}
                                         </Field>
 
                                         <button data-testid="form-btnCity" type="button" onClick={!errors.uf && values.uf ? nextMessageCity : null}><i className="fas fa-play fa-2x" /></button>
