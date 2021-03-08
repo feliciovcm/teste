@@ -1,4 +1,5 @@
 
+
   * {
     margin: 0;
     padding: 0;
@@ -253,6 +254,12 @@ option {
     .container section {
       width: 90%;
     }
+    .messageContainer {
+      justify-content: flex-end;
+    }
+    .messageContainer img{
+      left: -42px;
+    }
   }
     
 @media(max-width: 620px) {
@@ -260,3 +267,5 @@ h1 img {
     margin: 0;
     }
  }
+
+  
