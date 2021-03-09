@@ -171,6 +171,7 @@ export default function App() {
 
             </header>
             <section>
+
                 <Formik
                     initialValues={{ name: '', uf: '', city: '', bornDate: '', email: '', rating: 0 }}
                     validationSchema={SignupSchema}

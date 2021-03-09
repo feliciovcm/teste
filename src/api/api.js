@@ -17,7 +17,7 @@ export default function postUser(data) {
         .then(() => {
 
             const changePage = document.getElementById('root');
-            changePage.innerHTML = "<header><img src='https://workalove.com/wp-content/uploads/2021/02/capa-workalove-ok.webp' alt='workalove' /></header><h1> Muito obrigado pela sua participação <img src='images/smiling.svg' alt='emoji' /></h1>";
+            changePage.innerHTML = "<header><img src='https://workalove.com/wp-content/uploads/2021/02/capa-workalove-ok.webp' alt='workalove' /></header><div className='afterPost'><h1> Muito obrigado pela sua participação <img src='images/smiling.svg' alt='emoji' /></h1></div>";
         })
 }
 
