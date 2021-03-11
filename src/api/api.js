@@ -24,5 +24,9 @@ export default function postUser(data) {
 
 // API REQUEST DOS ESTADOS
 
-export const getStates = axios.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados");
+export const getStates = axios.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+
+export const getCities = function (id) {
+    return axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${id}/municipios`)
+}
 

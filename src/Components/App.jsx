@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { Formik, Field, Form, ErrorMessage, } from 'formik';
 import { LastMessage, MessageBornDate, MessageCity, MessageEmail, MessageName } from './Message';
-import postUser, { getStates } from "../api/api";
+import postUser, { getCities, getStates } from "../api/api";
 import RatingIcon from './Rating';
-import axios from 'axios';
+import Button from './Button';
 
 export default function App() {
+
+
 
 
 
@@ -126,7 +128,7 @@ export default function App() {
 
                 let chosenState = uf.filter(obj => (obj.sigla === selectStates.value))
 
-                axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${chosenState[0].id}/municipios`)
+                getCities(chosenState[0].id)
                     .then(res => {
                         selectCities.removeAttribute('disabled');
                         setCity(res.data);
@@ -198,7 +200,13 @@ export default function App() {
                                         name="name"
                                         className={`inputComponent ${errors.name && touched.name && "errorField"}`}
                                     />
-                                    <button data-testid="form-btnName" type="button" onClick={!errors.name && values.name ? nextMessageName : null}><i className="fas fa-play fa-2x" /></button>
+                                    <Button
+                                        clicked={() => {
+                                            if (!errors.name && values.name) {
+                                                nextMessageName();
+                                            }
+                                        }} />
+
                                     <div className="error"> <ErrorMessage name="name" /></div>
                                 </div>
                             </div>
@@ -231,7 +239,12 @@ export default function App() {
                                             {city.map(createCitiesOption)}
                                         </Field>
 
-                                        <button data-testid="form-btnCity" type="button" onClick={!errors.uf && values.uf ? nextMessageCity : null}><i className="fas fa-play fa-2x" /></button>
+                                        <Button
+                                            clicked={() => {
+                                                if (!errors.uf && values.uf) {
+                                                    nextMessageCity();
+                                                }
+                                            }} />
                                         <div className="error"> <ErrorMessage name="uf" /></div>
                                     </div>
                                 </div>
@@ -250,7 +263,13 @@ export default function App() {
                                             name="bornDate"
                                             className={`inputComponent ${errors.bornDate && touched.bornDate && "errorField"}`}
                                         />
-                                        <button data-testid="form-btnDate" type="button" onClick={!errors.bornDate && values.bornDate ? nextMessageBorndate : null}><i className="fas fa-play fa-2x" /></button>
+                                        <Button
+                                            clicked={() => {
+                                                if (!errors.bornDate && values.bornDate) {
+                                                    nextMessageBorndate();
+                                                }
+                                            }} />
+
                                         <div className="error"> <ErrorMessage name="bornDate" /></div>
                                     </div>
 
@@ -270,7 +289,13 @@ export default function App() {
 
                                         />
 
-                                        <button data-testid="form-btnEmail" type="button" onClick={!errors.email && values.email ? nextMessageEmail : null}><i className="fas fa-play fa-2x" /></button>
+                                        <Button
+                                            clicked={() => {
+                                                if (!errors.email && values.email) {
+                                                    nextMessageEmail();
+                                                }
+                                            }} />
+
                                         <div className="error"> <ErrorMessage name="email" /></div>
                                     </div>
                                 </div>
